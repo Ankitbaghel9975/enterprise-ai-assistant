@@ -1,0 +1,6 @@
+streamlit
+pymupdf
+chromadb
+google-genai
+python-dotenv
+prometheus-client

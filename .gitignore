@@ -1,0 +1,21 @@
+# Secrets
+.env
+.env.*
+
+# Python
+venv/
+__pycache__/
+*.py[cod]
+*.save
+
+# Application data
+data/
+
+# Docker and Kubernetes
+*.log
+
+# Downloaded binaries
+minikube-linux-amd64
+
+# Backup and incorrect ignore file
+.gitignorex

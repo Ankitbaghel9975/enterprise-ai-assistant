@@ -1,0 +1,33 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: enterprise-ai-assistant
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: enterprise-ai-assistant
+  template:
+    metadata:
+      labels:
+        app: enterprise-ai-assistant
+    spec:
+      containers:
+        - name: assistant
+          image: enterprise-ai-assistant:v2
+          imagePullPolicy: IfNotPresent
+          ports:
+            - name: http
+              containerPort: 8501
+            - name: metrics
+              containerPort: 8000
+          envFrom:
+            - secretRef:
+                name: gemini-secret
+          volumeMounts:
+            - name: chroma-storage
+              mountPath: /app/data/chroma_db
+      volumes:
+        - name: chroma-storage
+          persistentVolumeClaim:
+            claimName: chroma-pvc
