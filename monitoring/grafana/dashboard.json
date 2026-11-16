@@ -1,0 +1,49 @@
+{
+  "title": "Enterprise AI Knowledge Assistant",
+  "tags": ["enterprise-ai", "monitoring"],
+  "timezone": "browser",
+  "schemaVersion": 39,
+  "version": 1,
+  "refresh": "15s",
+  "panels": [
+    {
+      "id": 1,
+      "title": "Total PDF Uploads",
+      "type": "stat",
+      "gridPos": {"h": 5, "w": 6, "x": 0, "y": 0},
+      "targets": [
+        {"expr": "sum(total_pdf_uploads_total)", "refId": "A"}
+      ]
+    },
+    {
+      "id": 2,
+      "title": "Total Questions",
+      "type": "stat",
+      "gridPos": {"h": 5, "w": 6, "x": 6, "y": 0},
+      "targets": [
+        {"expr": "sum(total_questions_total)", "refId": "A"}
+      ]
+    },
+    {
+      "id": 3,
+      "title": "Average AI Response Time",
+      "type": "stat",
+      "gridPos": {"h": 5, "w": 6, "x": 12, "y": 0},
+      "targets": [
+        {
+          "expr": "sum(rate(question_response_time_seconds_sum[5m])) / sum(rate(question_response_time_seconds_count[5m]))",
+          "refId": "A"
+        }
+      ]
+    },
+    {
+      "id": 4,
+      "title": "Application Errors",
+      "type": "stat",
+      "gridPos": {"h": 5, "w": 6, "x": 18, "y": 0},
+      "targets": [
+        {"expr": "sum(application_errors_total)", "refId": "A"}
+      ]
+    }
+  ]
+}
